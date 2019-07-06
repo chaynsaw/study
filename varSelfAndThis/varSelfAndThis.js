@@ -20,3 +20,31 @@ function xyz(){
   }
 
 };
+var abc = this; // we want to use this variable in embedded functions
+
+function xyz(){
+  // "this" is different here! --- but we don't care!
+  console.log(abc); // now it is the right object!
+  function qwe(){
+    // "this" is different here too! --- but we don't care!
+    console.log(abc); // it is the right object here too!
+  }
+
+};
+
+
+// Normally the main reason for using this approach is to make the current this available to subfunctions or closures. For example:
+
+var myObject = {
+  param: 123,
+  method: function(){
+    alert( this.param );
+  },
+  method2: function(){
+    setTimeout(function(){
+      alert( this.param );
+    },100);
+  }
+}
+
+//https://stackoverflow.com/questions/17163248/whats-the-advantage-of-using-var-self-this-in-knockout-js-view-models
