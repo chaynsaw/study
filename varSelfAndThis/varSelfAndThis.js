@@ -48,3 +48,24 @@ var myObject = {
 }
 
 //https://stackoverflow.com/questions/17163248/whats-the-advantage-of-using-var-self-this-in-knockout-js-view-models
+
+var obj = {
+  outerFunction: function() {
+    console.log(this == obj);
+
+    function innerFunction() {
+      console.log(this == obj)
+    }
+    return innerFunction;
+  }
+}
+
+var obj = {
+  outerFunction: function() {
+    var innerFunction = () => {
+      console.log(this == obj);
+    }
+    return innerFunction;
+  }
+  
+}
